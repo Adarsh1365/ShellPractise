@@ -13,3 +13,9 @@ if [ $2 -le -10 ] ; then
 else
   echo "given number is greater than -10"
 fi
+
+if [ $3 -neq 43 ] ; then
+  echo "given number is not equal to 43"
+else
+  echo "given number is equal to 43"
+fi
