@@ -1,5 +1,5 @@
 #!/bin/bash
-Mentor="Adarsh"
+Mentor=$1
 echo "Hello, World!"
 echo "Today is $(date)"
 echo "Current user: $(id -u)"
