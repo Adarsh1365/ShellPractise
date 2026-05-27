@@ -8,10 +8,10 @@ User=$(id -u)
 Validate()
 {
   if [ $1 -ne 0 ] ; then
-    echo "$2 installation failed....exiting now"
+    echo "$2 failed....exiting now"
     exit 1
   else
-    echo "$2 installation is successful"
+    echo "$2 is successful"
   fi
 }
 
@@ -27,5 +27,9 @@ if [ $? -eq 0 ] ; then
 else
   echo "Installing mysql now"
   dnf install mysql-server -y &>> $Logfile
-  Validate $? "Mysql"
+  Validate $? "Mysql installing"
+
+  systemctl enable mysqld
+  systemctl start mysqld
+  validate $? "Mysql starting"
 fi
