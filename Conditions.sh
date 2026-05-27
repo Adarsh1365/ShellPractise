@@ -7,3 +7,9 @@ elif [ $1 -eq 20 ]; then
 else
     echo "The number is less than 20"
 fi
+
+if [ $2 -le -10 ] ; then
+  echo "given number is less than equal to -10"
+else
+  echo "given number is greater than -10"
+fi
