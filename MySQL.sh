@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LogDir="/ec2-user/shell-logs"
+LogDir="/home/ec2-user/shell-logs"
 Logfile="$LogDir/MysqlInstallingLog.log"
 
 User=$(id -u)
