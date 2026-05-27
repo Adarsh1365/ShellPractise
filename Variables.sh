@@ -7,3 +7,8 @@ echo "script name is $0"
 echo "First variable passed to script $1"
 echo "Second variable passed to script $2"
 echo "user name $USER"
+echo "home directory of user $HOME"
+echo "current working directory $PWD"
+echo "current shell $SHELL"
+echo "current date and time $date"
+
