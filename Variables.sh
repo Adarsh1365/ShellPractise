@@ -10,5 +10,5 @@ echo "user name $USER"
 echo "home directory of user $HOME"
 echo "current working directory $PWD"
 echo "current shell $SHELL"
-echo "current date and time $date"
+echo "current pid of script $$"
 
