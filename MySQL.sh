@@ -22,7 +22,7 @@ fi
 
 dnf list installed mysql &>> $Logfile
 
-if [ $? -ne 0 ] ; then
+if [ $? -eq 0 ] ; then
   echo "Mysql is already is installed....skipping now"
 else
   echo "Installing mysql now"
