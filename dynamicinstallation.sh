@@ -4,7 +4,7 @@ LogDir="/home/ec2-user/shell-logs"
 Logfile="$LogDir/mysql.log"
 USER=$(id -u)
 
-if [ $USER -ne 0 ]
+if [ $USER -ne 0 ] ; then
     echo "please run the script using root access"
     exit 1
 fi
