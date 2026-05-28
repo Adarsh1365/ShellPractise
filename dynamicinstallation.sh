@@ -9,7 +9,7 @@ if [ $USER -ne 0 ]; then
     exit 1
 fi
 
-if [ $# eq 0]; then
+if [ $# eq 0 ]; then
    echo "Please provide softwares to install as a parameters"
    echo "USAGE command sh $0 <software-1> <software-2>"
    exit 1
