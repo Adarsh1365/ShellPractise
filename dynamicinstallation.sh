@@ -6,7 +6,7 @@ TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
-N="\e[30m"
+N="\e[0m"
 
 USER=$(id -u)
 
