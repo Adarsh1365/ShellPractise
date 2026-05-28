@@ -21,7 +21,7 @@ Validate()
 
 
 
-dnf list installed mysql &>> $Logfile
+dnf list installed mysql-server &>> $Logfile
 
 if [ $? -eq 0 ] ; then
   echo "Mysql is already is installed....SKIPPING" | tee -a $Logfile
