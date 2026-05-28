@@ -24,10 +24,10 @@ fi
 validate()
 {
   if [ $1 -ne 0 ]; then
-    echo -e "$TIMESTAMP $R [ERROR] $N $2 is $R FAILED" | tee -a $Logfile
+    echo -e "$TIMESTAMP $R [ERROR] $N $2 is $R FAILED $N" | tee -a $Logfile
     exit 1
   else
-    echo -e "$TIMESTAMP $G [SUCCESS] $N $2 is $G SUCESS" | tee -a $Logfile
+    echo -e "$TIMESTAMP $G [SUCCESS] $N $2 is $G SUCESS $N" | tee -a $Logfile
   fi
 }
 
