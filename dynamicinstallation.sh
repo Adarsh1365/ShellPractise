@@ -41,3 +41,5 @@ do
     fi
 
 done
+
+echo "Script ended running in $SECONDS"
