@@ -29,7 +29,7 @@ validate()
 for software in $@
 do
     dnf list installed $software &>> $Logfile
-    if[ $? -ne 0 ] ; then
+    if [ $? -ne 0 ]; then
       dnf install $software -y  &>> $Logfile
       validate $? "$software installation"
       systemctl enable mysqld &>> $Logfile
