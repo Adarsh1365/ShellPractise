@@ -9,7 +9,7 @@ if [ $USER -ne 0 ]; then
     exit 1
 fi
 
-if [ $# eq 0 ]; then
+if [ $# -eq 0 ]; then
    echo "Please provide softwares to install as a parameters"
    echo "USAGE command sh $0 <software-1> <software-2>"
    exit 1
@@ -17,7 +17,7 @@ fi
 
 validate()
 {
-  if [$1 -ne 0]; then
+  if [ $1 -ne 0 ]; then
     echo "$2 is FAILED" | tee -a $Logfile
   else
     echo "$2 is SUCESS" | tee -a $Logfile
@@ -28,7 +28,7 @@ validate()
 for software in $@
 do
     dnf list installed $software &>> $Logfile
-    if[ $? -ne 0]; then
+    if[ $? -ne 0 ]; then
       dnf install $software -y  &>> $Logfile
       validate $? "$software installation"
       systemctl enable mysqld &>> $Logfile
