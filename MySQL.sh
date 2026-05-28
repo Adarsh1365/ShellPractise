@@ -12,10 +12,10 @@ fi
 Validate()
 {
   if [ $1 -ne 0 ] ; then
-    echo "$2 failed....exiting now"
+    echo "$2 FAILED....exiting now" | tee -a $Logfile
     exit 1
   else
-    echo "$2 is successful"
+    echo "$2 is SUCCESS" | tee -a $Logfile
   fi
 }
 
@@ -24,9 +24,9 @@ Validate()
 dnf list installed mysql &>> $Logfile
 
 if [ $? -eq 0 ] ; then
-  echo "Mysql is already is installed....skipping now"
+  echo "Mysql is already is installed....SKIPPING" | tee -a $Logfile
 else
-  echo "Installing mysql-server now"
+  echo "Installing mysql-server now" | tee -a $Logfile
   dnf install mysql-server -y &>> $Logfile
   Validate $? "Mysql installing"
 
