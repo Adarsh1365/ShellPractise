@@ -4,10 +4,11 @@ LogDir="/home/ec2-user/shell-logs"
 Logfile="$LogDir/mysql.log"
 
 User=$(id -u)
-if [ $User -ne 0 ]; thenC:\Devops\ShellScript\ShellPractise\MySQL.sh
+if [ $User -ne 0 ]; then
   echo "Please run using root acess"
   exit 1
 fi
+
 Validate()
 {
   if [ $1 -ne 0 ] ; then
