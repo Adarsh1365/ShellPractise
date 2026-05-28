@@ -43,7 +43,7 @@ do
       systemctl start mysqld
       validate $? "$software starting"
     else
-      echo -e "$software already installed...$Y SKIPPNG" | tee -a $Logfile
+      echo -e "$software already installed...$Y SKIPPNG $N" | tee -a $Logfile
     fi
 
 done
