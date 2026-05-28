@@ -34,7 +34,7 @@ do
       validate $? "$software installation"
       systemctl enable mysqld &>> $Logfile
       systemctl start mysqld
-      validate $? "$software starting
+      validate $? "$software starting"
     else
       echo "$software already installed...SKIPPNG" | tee -a $Logfile
     fi
