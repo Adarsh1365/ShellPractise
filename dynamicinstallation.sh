@@ -13,7 +13,7 @@ USER=$(id -u)
 if [ $USER -ne 0 ]; then
     echo $TIMESTAMP $R [ERROR] $N "please run the script using root access" | tee -a $Logfile
     exit 1
-fi
+  fi
 
 if [ $# -eq 0 ]; then
    echo $TIMESTAMP $R [ERROR] $N "Please provide softwares to install as a parameters" | tee -a $Logfile
