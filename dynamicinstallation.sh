@@ -2,7 +2,7 @@
 
 LogDir="/home/ec2-user/shell-logs"
 Logfile="$LogDir/mysql.log"
-TIMESTAMP= $(date "+%y-%m-%d %H-%M-%S")
+TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
