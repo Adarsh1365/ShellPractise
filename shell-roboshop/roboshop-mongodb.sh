@@ -11,7 +11,8 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-TIMESTAMP=$(date "%Y-%m-%d %H:%M:%S")
+
+TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 
 USER=$(id -u)
 
@@ -21,7 +22,7 @@ if [ $USER -ne 0 ]; then
 fi
 
 validate(){
-  if [ $1 -eq 0]; then
+  if [ $1 -ne 0]; then
     echo -e " $TIMESTAMP $R [ERROR] $N $2..is FAILED" | tee $LOG_FILE
     exit 1
   else
