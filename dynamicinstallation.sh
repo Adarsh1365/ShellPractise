@@ -19,9 +19,9 @@ validate()
 {
   if [ $1 -ne 0 ]; then
     echo "$2 is FAILED" | tee -a $Logfile
+    exit 1
   else
     echo "$2 is SUCESS" | tee -a $Logfile
-    exit 1
   fi
 }
 
@@ -34,7 +34,7 @@ do
       validate $? "$software installation"
       systemctl enable mysqld &>> $Logfile
       systemctl start mysqld
-      validate $? "$software starting"
+      validate $? "$software starting
     else
       echo "$software already installed...SKIPPNG" | tee -a $Logfile
     fi
