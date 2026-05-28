@@ -11,12 +11,12 @@ N="\e[30m"
 USER=$(id -u)
 
 if [ $USER -ne 0 ]; then
-    echo $TIMESTAMP $R [ERROR] $N "please run the script using root access" | tee -a $Logfile
+    echo -e $TIMESTAMP $R [ERROR] $N "please run the script using root access" | tee -a $Logfile
     exit 1
   fi
 
 if [ $# -eq 0 ]; then
-   echo $TIMESTAMP $R [ERROR] $N "Please provide softwares to install as a parameters" | tee -a $Logfile
+   echo -e $TIMESTAMP $R [ERROR] $N "Please provide softwares to install as a parameters" | tee -a $Logfile
    echo "USAGE command sh $0 <software-1> <software-2>"
    exit 1
 fi
@@ -24,10 +24,10 @@ fi
 validate()
 {
   if [ $1 -ne 0 ]; then
-    echo $TIMESTAMP $R [ERROR] $N "$2 is $R FAILED " | tee -a $Logfile
+    echo -e $TIMESTAMP $R [ERROR] $N "$2 is $R FAILED " | tee -a $Logfile
     exit 1
   else
-    echo $TIMESTAMP $G [SUCCESS] $N "$2 is $G SUCESS" | tee -a $Logfile
+    echo -e $TIMESTAMP $G [SUCCESS] $N "$2 is $G SUCESS" | tee -a $Logfile
   fi
 }
 
