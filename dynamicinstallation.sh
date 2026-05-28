@@ -22,6 +22,7 @@ validate()
   else
     echo "$2 is SUCESS" | tee -a $Logfile
     exit 1
+  fi
 }
 
 
