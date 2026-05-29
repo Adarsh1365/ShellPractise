@@ -40,7 +40,7 @@ echo "Installing redis" | tee -a $LOG_FILE
 dnf install redis -y &>>$LOG_FILE
 validate $? "Installing redis:7"
 
-sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c protected-mode no'/etc/redis/redis.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c protected-mode no' /etc/redis/redis.conf
 validate $? "Setting/allowing remote access ip config and changing protected mode"
 
 systemctl enable redis &>>$LOG_FILE
