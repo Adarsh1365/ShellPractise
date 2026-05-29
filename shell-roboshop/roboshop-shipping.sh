@@ -59,9 +59,9 @@ unzip /tmp/shipping.zip &>>$LOG_FILE
 validate $? "downloaded and extracted code"
 
 cd /app
-mvn clean package
+mvn clean package &>>$LOG_FILE
 validate $? "Maven dependies installed"
-mv target/shipping-1.0.jar shipping.jar
+mv target/shipping-1.0.jar shipping.jar &>>$LOG_FILE
 validate $? "Maven build application jar"
 
 cp $SCRIPT_DIR/shipping.service /etc/systemd/system/
@@ -69,24 +69,24 @@ validate $? "copied system service"
 
 systemctl daemon-reload &>>$LOG_FILE
 validate $? "deamon-reload"
-systemctl enable cart &>>$LOG_FILE
-systemctl start cart &>>$LOG_FILE
+systemctl enable shipping &>>$LOG_FILE
+systemctl start shipping &>>$LOG_FILE
 validate $? "enabling cart"
 
 echo "Mysql client installing" | tee -a $LOG_FILE
-dnf install mysql -y
+dnf install mysql -y &>>$LOG_FILE
 validate $? "mysql client installation"
 
 mysql -h $MYSQL_HOST -u root -pAdarsh@1365 -e "use cities" &>>$LOGS_FILE
 if [ $? -ne 0 ]; then
-    mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/schema.sql
-    mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/app-user.sql
-    mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/master-data.sql
-    VALIDATE $? "Data loaded"
+    mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/schema.sql &>>$LOGS_FILE
+    mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/app-user.sql &>>$LOGS_FILE
+    mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/master-data.sql &>>$LOGS_FILE
+    validate $? "Data loaded"
 else
     echo -e "Data already loaded ... $Y SKIPPING $N"
 fi
 
 systemctl enable shipping &>>$LOG_FILE
 systemctl restart shipping &>>$LOG_FILE
-validate $? "Restarting cart"
+validate $? "Restarting Shipping"
