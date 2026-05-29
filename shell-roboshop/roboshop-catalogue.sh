@@ -82,6 +82,7 @@ dnf install mongodb-mongosh -y &>>$LOG_FILE
 validate $? "Installing mongo clinet"
 
 INDEX=$(mongosh --quiet --host mongodb.adarshdevopslearn.online --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
+echo "INDEX value is: $INDEX"
 if [ "$INDEX" -lt 0 ]; then
     mongosh --host mongodb.adarshdevopslearn.online </app/db/master-data.js &>>$LOG_FILE
     validate $? "Load Products"
