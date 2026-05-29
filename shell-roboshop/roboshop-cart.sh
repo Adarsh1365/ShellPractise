@@ -53,28 +53,28 @@ fi
 rm -rf /app &>>$LOG_FILE
 validate $? "Removing existing code"
 
-rm -rf /tmp/user.zip &>>$LOG_FILE
-validate $? "Removed catalogue zip"
+rm -rf /tmp/cart.zip &>>$LOG_FILE
+validate $? "Removed  zip"
 
 mkdir -p /app &>>$LOG_FILE
 
-curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip  &>>$LOG_FILE
+curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip  &>>$LOG_FILE
 cd /app
-unzip /tmp/user.zip &>>$LOG_FILE
+unzip /tmp/cart.zip &>>$LOG_FILE
 validate $? "downloaded and extracted code"
 
 npm install &>>$LOG_FILE
 validate $? "Nodejs Dependencies installed"
 
-cp $SCRIPT_DIR/user.service /etc/systemd/system/
+cp $SCRIPT_DIR/cart.service /etc/systemd/system/
 validate $? "copied system service"
 
 systemctl daemon-reload &>>$LOG_FILE
 validate $? "deamon-reload"
-systemctl enable user &>>$LOG_FILE
-systemctl start user &>>$LOG_FILE
-validate $? "enabling user"
+systemctl enable cart &>>$LOG_FILE
+systemctl start cart &>>$LOG_FILE
+validate $? "enabling cart"
 
-systemctl enable user &>>$LOG_FILE
-systemctl restart user &>>$LOG_FILE
-validate $? "Restarting catalogue"
+systemctl enable cart &>>$LOG_FILE
+systemctl restart cart &>>$LOG_FILE
+validate $? "Restarting cart"
