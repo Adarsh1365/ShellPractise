@@ -48,7 +48,7 @@ do
               )
   echo "Instance id: $INSTANCE_ID" | tee -a $LOG_FILE
 
-  if [-z $INSTANCE_ID ]; then
+  if [ -z $INSTANCE_ID ]; then
     echo "$TIMESTAMP $R[ERROR]$N Instance creation Failed" | tee -a $LOG_FILE
     exit 1
   fi
