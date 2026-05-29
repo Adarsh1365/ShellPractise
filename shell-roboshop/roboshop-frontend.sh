@@ -47,7 +47,7 @@ rm -rf /etc/nginx/nginx.conf
 validate $? "Removed Default conf"
 
 cp $SCRIPT_DIR/nginx.conf /etc/nginx/nginx.conf
-VALIDATE $? "Copied roboshop nginx conf"
+validate $? "Copied roboshop nginx conf"
 
 systemctl daemon-reload &>>$LOG_FILE
 validate $? "deamon-reload"
