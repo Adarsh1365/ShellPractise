@@ -41,12 +41,12 @@ do
   INSTANCE_ID=$(aws ec2 run-instances \
                  --image-id $AMI_ID \
                  --instance-type t3.micro \
-                 --security-group "roboshop-common" "roboshop-$INSTANCE"  \
+                 --security-groups "roboshop-common" "roboshop-$INSTANCE"  \
                  --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=roboshop-$INSTANCE}]"
                  --query 'Instances[0].InstanceId' \
                  --output text
               )
-  echo "Instance id -$INSTANCE_ID" | tee -a $LOG_FILE
+  echo "Instance id: $INSTANCE_ID" | tee -a $LOG_FILE
 
   if [-z $INSTANCE_ID ]; then
     echo "$TIMESTAMP $R[ERROR]$N Instance creation Failed" | tee -a $LOG_FILE
