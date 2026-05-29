@@ -30,7 +30,7 @@ validate(){
 }
 
 echo "Installing python"
-dnf install python3 gcc python3-devel -y
+dnf install python3 gcc python3-devel -y &>>$LOG_FILE
 validate $? "Python installation"
 
 id roboshop
@@ -56,7 +56,7 @@ unzip /tmp/payment.zip &>>$LOG_FILE
 validate $? "downloaded and extracted code"
 
 cd /app
-pip3 install -r requirements.txt
+pip3 install -r requirements.txt &>>$LOG_FILE
 validate $? "Dependencies installation"
 
 cp $SCRIPT_DIR/payment.service /etc/systemd/system/
