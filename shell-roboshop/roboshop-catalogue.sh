@@ -81,8 +81,8 @@ validate $? "copied mongo repo"
 dnf install mongodb-mongosh -y &>>$LOG_FILE
 validate $? "Installing mongo clinet"
 
-INDEX=$(mongosh --host mongodb.adarshdevopslearn.online --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
-if [ $INDEX -lt 0 ]; then
+INDEX=$(mongosh --quiet --host mongodb.adarshdevopslearn.online --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
+if [ "$INDEX" -lt 0 ]; then
     mongosh --host mongodb.adarshdevopslearn.online </app/db/master-data.js &>>$LOG_FILE
     validate $? "Load Products"
 else
