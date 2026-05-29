@@ -50,10 +50,10 @@ else
 fi
 
 rm -rf /app &>>$LOG_FILE
-VALIDATE $? "Removing existing code"
+validate $? "Removing existing code"
 
 rm -rf /tmp/catalogue.zip &>>$LOG_FILE
-VALIDATE $? "Removed catalogue zip"
+validate $? "Removed catalogue zip"
 
 mkdir -p /app &>>$LOG_FILE
 
