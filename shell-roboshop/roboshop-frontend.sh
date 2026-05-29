@@ -38,9 +38,9 @@ validate $? "nginx installation"
 rm -rf /usr/share/nginx/html/*
 validate $? "Removing ngnix default page"
 
-curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>> $LOGS_FILE
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>> $LOG_FILE
 cd /usr/share/nginx/html
-unzip /tmp/frontend.zip &>> $LOGS_FILE
+unzip /tmp/frontend.zip &>> $LOG_FILE
 validate $? "downloaded and extracted code"
 
 rm -rf /etc/nginx/nginx.conf
