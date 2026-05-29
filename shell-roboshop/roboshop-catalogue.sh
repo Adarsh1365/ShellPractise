@@ -6,6 +6,7 @@ sudo chown -R ec2-user:ec2-user $LOGDIR
 sudo chmod -R 755 $LOGDIR
 sudo touch $LOGDIR/$0.log
 LOG_FILE="$LOGDIR/$0.log"
+SCRIPT_DIR=$PWD
 
 R="\e[31m"
 G="\e[32m"
@@ -62,11 +63,10 @@ cd /app
 unzip /tmp/catalogue.zip &>>$LOG_FILE
 validate $? "downloaded and extracted code"
 
-cd /app
 npm install &>>$LOG_FILE
 validate $? "Nodejs Dependencies installed"
 
-cp catalogue.service /etc/systemd/system/
+cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/
 validate $? "copied system service service"
 
 systemctl daemon-reload &>>$LOG_FILE
