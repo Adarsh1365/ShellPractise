@@ -17,16 +17,16 @@ TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 USER=$(id -u)
 
 if [ $USER -ne 0 ]; then
-  echo -e "$TIMESTAMP $R [ERROR] $N Please run script using root access" | tee $LOG_FILE
+  echo -e "$TIMESTAMP $R [ERROR] $N Please run script using root access" | tee -a $LOG_FILE
   exit 1
 fi
 
 validate(){
   if [ $1 -ne 0 ]; then
-    echo -e " $TIMESTAMP $R [ERROR] $N $2..is FAILED" | tee $LOG_FILE
+    echo -e " $TIMESTAMP $R [ERROR] $N $2..is FAILED" | tee -a $LOG_FILE
     exit 1
   else
-    echo -e "$TIMESTAMP $G [SUCCESS] $N $2 ..is SUCCESS" | tee $LOG_FILE
+    echo -e "$TIMESTAMP $G [SUCCESS] $N $2 ..is SUCCESS" | tee -a $LOG_FILE
   fi
 }
 
