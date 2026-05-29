@@ -1,7 +1,7 @@
 #!/bin/bash
 AMI_ID="ami-0220d79f3f480ecf5"
 ZONE_ID=Z00019002BVH3LOQYO0Q7
-DOMAIN_NAME="adarshdevopslearn.online "
+DOMAIN_NAME="adarshdevopslearn.online"
 LOGDIR="\home\ec2-user\shell-logs"
 sudo mkdir -p $LOGDIR
 sudo chown -R ec2-user:ec2-user $LOGDIR
@@ -14,7 +14,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-TIMESTAMP=$(date "%Y-%m-%d %H:%M:%S")
+TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 
 if [ $USER -ne 0 ]; then
   echo "$TIMESTAMP $R[ERROR]$N Please run using sudo access" | tee -a $LOG_FILE
