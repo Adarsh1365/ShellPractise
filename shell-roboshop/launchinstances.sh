@@ -58,21 +58,27 @@ do
           --query "Reservations[].Instances[].PublicIpAddress" \
           --output text
           )
+          echo "IP adress: $IP"
           S3RECORD="$DOMAIN_NAME"
+          echo "$S3RECORD"
   else
          IP=$(aws ec2 describe-instances \
                 --instance-ids $INSTANCE_ID \
                 --query "Reservations[].Instances[].PrivateIpAddress" \
                 --output text
                 )
+          echo "IP adress: $IP"
           S3RECORD="$INSTANCE.$DOMAIN_NAME"
+          echo "$S3RECORD"
   fi
 
   aws route53 change-resource-record-sets \
       --hosted-zone-id $ZONE_ID \
-      --change-batch '{
+      --change-batch '
+      {
           "Comment": "Update a record to new IP",
-          "Changes": [{
+          "Changes": [
+          {
               "Action": "UPSERT",
               "ResourceRecordSet": {
                   "Name": "'$S3RECORD'",
