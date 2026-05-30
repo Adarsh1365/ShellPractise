@@ -30,16 +30,16 @@ fi
 
 validate(){
   if [ $1 -ne 0 ]; then
-    echo "$TIMESTAMP $R[ERROR]$N $2...FAILED" | tee -a $LOG_FILE
+    echo -e "$TIMESTAMP $R[ERROR]$N $2...FAILED" | tee -a $LOG_FILE
     exit 1
   else
-    echo "$TIMESTAMP $G[SUCCESS]$N $2...SUCCESS" | tee -a $LOG_FILE
+    echo -e "$TIMESTAMP $G[SUCCESS]$N $2...SUCCESS" | tee -a $LOG_FILE
   fi
 }
 
 
 if [ "$1" != "create" ] && [ "$1" != "destroy" ]; then
-      echo "$TIMESTAMP $R[ERROR]$N first parameter should be either create or destroy" | tee -a $LOG_FILE
+      echo -e "$TIMESTAMP $R[ERROR]$N first parameter should be either create or destroy" | tee -a $LOG_FILE
 fi
 
 Action=$1
@@ -74,18 +74,18 @@ do
           --query "Reservations[].Instances[].PublicIpAddress" \
           --output text
           )
-          echo "IP adress: $IP"
+          echo "$TIMESTAMP IP adress: $IP"
           S3RECORD="$DOMAIN_NAME"
-          echo "$S3RECORD"
+          echo "$TIMESTAMP $S3RECORD"
       else
          IP=$(aws ec2 describe-instances \
                 --instance-ids $INSTANCE_ID \
                 --query "Reservations[].Instances[].PrivateIpAddress" \
                 --output text
                 )
-          echo "IP adress: $IP"
+          echo "$TIMESTAMP IP adress: $IP"
           S3RECORD="$INSTANCE.$DOMAIN_NAME"
-          echo "$S3RECORD"
+          echo "$TIMESTAMP $S3RECORD"
       fi
 
         aws route53 change-resource-record-sets \
@@ -106,7 +106,7 @@ do
                     }
                 }]
             }'
-          echo "updated R53 record for: $instance"
+          echo " $TIMESTAMP updated R53 record for: $instance"
   else
     if [ "$Instance_id" == "none" ]; then
       echo "$TIMESTAMP $instance is not available..nothing to do" | tee -a $LOG_FILE
