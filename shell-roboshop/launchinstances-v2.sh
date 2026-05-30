@@ -17,25 +17,15 @@ N="\e[0m"
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 
 if [ $USER -ne 0 ]; then
-  echo "$TIMESTAMP $R[ERROR]$N Please run using sudo access" | tee -a $LOG_FILE
+  echo -e "$TIMESTAMP $R[ERROR]$N Please run using sudo access" | tee -a $LOG_FILE
   exit 1
 fi
 
 if [ $# -lt 2 ]; then
-  echo "$TIMESTAMP $R[ERROR]$N Please provide atleast two parameters" | tee -a $LOG_FILE
-  echo "USAGE sh $0 <create/delete> <instance1> <instance2> ..."
+  echo -e "$TIMESTAMP $R[ERROR]$N Please provide atleast two parameters" | tee -a $LOG_FILE
+  echo "$TIMESTAMP USAGE sh $0 <create/delete> <instance1> <instance2> ..." | tee -a $LOG_FILE
   exit 1
 fi
-
-
-validate(){
-  if [ $1 -ne 0 ]; then
-    echo -e "$TIMESTAMP $R[ERROR]$N $2...FAILED" | tee -a $LOG_FILE
-    exit 1
-  else
-    echo -e "$TIMESTAMP $G[SUCCESS]$N $2...SUCCESS" | tee -a $LOG_FILE
-  fi
-}
 
 
 if [ "$1" != "create" ] && [ "$1" != "destroy" ]; then
@@ -83,9 +73,9 @@ do
                 --query "Reservations[].Instances[].PrivateIpAddress" \
                 --output text
                 )
-          echo "$TIMESTAMP IP adress: $IP"
+          echo "$TIMESTAMP IP adress: $IP" | tee -a $LOG_FILE
           S3RECORD="$INSTANCE.$DOMAIN_NAME"
-          echo "$TIMESTAMP $S3RECORD"
+          echo "$TIMESTAMP $S3RECORD" | tee -a $LOG_FILE
       fi
 
         aws route53 change-resource-record-sets \
@@ -106,7 +96,7 @@ do
                     }
                 }]
             }'
-          echo " $TIMESTAMP updated R53 record for: $instance"
+          echo " $TIMESTAMP updated R53 record for: $instance" | tee -a $LOG_FILE
   else
     if [ "$Instance_id" == "none" ]; then
       echo "$TIMESTAMP $instance is not available..nothing to do" | tee -a $LOG_FILE
