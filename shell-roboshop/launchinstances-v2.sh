@@ -46,6 +46,7 @@ aws ec2 describe-instances \
 for instance in $@
 do
   Instance_id=$(Get_Instanceid $instance)
+  echo "$Instance_id"
   if [ "$Action" == "create" ]; then
       if [ $Instance_id == "none" ]; then
         echo "$TIMESTAMP $instance is launching..." | tee -a $LOG_FILE
