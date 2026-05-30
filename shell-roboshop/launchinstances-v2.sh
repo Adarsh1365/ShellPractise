@@ -30,6 +30,7 @@ fi
 
 if [ "$1" != "create" ] && [ "$1" != "destroy" ]; then
       echo -e "$TIMESTAMP $R[ERROR]$N first parameter should be either create or destroy" | tee -a $LOG_FILE
+      exit 1
 fi
 
 Action=$1
@@ -39,6 +40,7 @@ Get_Instanceid=$(aws ec2 describe-instances \
                      --filters "Name=tag:Name,Values=roboshop-$1" "Name=instance-state-name,Values=running" \
                      --query "Reservations[].Instances[].InstanceId" \
                      --output text)
+
 for instance in $@
 do
   Instance_id=$(Get_Instanceid $instance)
