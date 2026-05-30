@@ -63,7 +63,7 @@ do
         echo "$TIMESTAMP $instance is already running with id: $Instance_id..nothing to do" | tee -a $LOG_FILE
       fi
 
-      if [ "$instnace" == "frontend" ]; then
+      if [ "$instance" == "frontend" ]; then
           IP=$(aws ec2 describe-instances \
           --instance-ids $INSTANCE_ID \
           --query "Reservations[].Instances[].PublicIpAddress" \
@@ -103,7 +103,7 @@ do
             }'
           echo " $TIMESTAMP updated R53 record for: $instance" | tee -a $LOG_FILE
   else
-    if [ "$Instance_id" == "none" ]; then
+    if [ $Instance_id == "None" ]; then
       echo "$TIMESTAMP $instance is not available..nothing to do" | tee -a $LOG_FILE
       exit 1
     else
