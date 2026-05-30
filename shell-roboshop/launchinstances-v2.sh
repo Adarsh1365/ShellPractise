@@ -48,7 +48,7 @@ do
   Instance_id=$(Get_Instanceid $instance)
   echo "$Instance_id"
   if [ "$Action" == "create" ]; then
-      if [ "$Instance_id" == "None" ]; then
+      if [ -z "$Instance_id" ] || [ "$Instance_id" = "None" ]; then
         echo "$TIMESTAMP $instance is launching..." | tee -a $LOG_FILE
         INSTANCE_ID=$(aws ec2 run-instances \
                          --image-id $AMI_ID \
@@ -79,7 +79,7 @@ do
                 --output text
                 )
           echo "$TIMESTAMP IP adress: $IP" | tee -a $LOG_FILE
-          S3RECORD="$INSTANCE.$DOMAIN_NAME"
+          S3RECORD="$instance.$DOMAIN_NAME"
           echo "$TIMESTAMP $S3RECORD" | tee -a $LOG_FILE
       fi
 
@@ -103,7 +103,7 @@ do
             }'
           echo " $TIMESTAMP updated R53 record for: $instance" | tee -a $LOG_FILE
   else
-    if [ "$Instance_id" == "None" ]; then
+    if [ -z "$Instance_id" ] || [ "$Instance_id" = "None" ]; then
       echo "$TIMESTAMP $instance is not available..nothing to do" | tee -a $LOG_FILE
       exit 1
     else
