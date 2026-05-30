@@ -48,7 +48,7 @@ do
   Instance_id=$(Get_Instanceid $instance)
   echo "$Instance_id"
   if [ "$Action" == "create" ]; then
-      if [ $Instance_id == "none" ]; then
+      if [ "$Instance_id" == "None" ]; then
         echo "$TIMESTAMP $instance is launching..." | tee -a $LOG_FILE
         INSTANCE_ID=$(aws ec2 run-instances \
                          --image-id $AMI_ID \
@@ -103,7 +103,7 @@ do
             }'
           echo " $TIMESTAMP updated R53 record for: $instance" | tee -a $LOG_FILE
   else
-    if [ $Instance_id == "None" ]; then
+    if [ "$Instance_id" == "None" ]; then
       echo "$TIMESTAMP $instance is not available..nothing to do" | tee -a $LOG_FILE
       exit 1
     else
