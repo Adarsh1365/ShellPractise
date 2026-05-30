@@ -40,7 +40,7 @@ Get_Instanceid(){
 aws ec2 describe-instances \
                      --filters "Name=tag:Name,Values=roboshop-$1" "Name=instance-state-name,Values=running" \
                      --query "Reservations[].Instances[].InstanceId" \
-                     --output text)
+                     --output text
 }
 
 for instance in $@
